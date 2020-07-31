@@ -199,7 +199,7 @@ class Bottleneck(nn.Module):
 
 class ResNet50(nn.Module):
 
-    def __init__(self, layers=[2,2,2,2], expansion=4, num_classes=1000, embedding_size=64):
+    def __init__(self, layers=[3,4,6,3], expansion=4, num_classes=1000, embedding_size=64):
 
         super(ResNet50, self).__init__()
 
@@ -291,12 +291,9 @@ class ResNet50(nn.Module):
         # x = self.l2_norm(x)   
         # Multiply by alpha = 10 as suggested in https://arxiv.org/pdf/1703.09507.pdf
 
-        x = x * self.alpha
+        # x = x * self.alpha
         # x = self.relu(x)
 
-        for W in self.classifier.parameters():
-            # print("W:", W.shape)
-            W = torch.nn.functional.normalize(W, p=2, dim=-1)
         x = self.classifier(x)
         return x
 
