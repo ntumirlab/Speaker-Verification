@@ -144,7 +144,7 @@ class BasicBlock(nn.Module):
         out = self.conv2(out)
         out = self.bn2(out)
         # print(out.shape)
-        return out
+
         if self.downsample is not None:
             residual = self.downsample(x)
 
